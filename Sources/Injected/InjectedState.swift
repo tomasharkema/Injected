@@ -29,3 +29,24 @@ public struct InjectedState<InjectedType: ObservableObject>: DynamicProperty {
 }
 
 extension InjectedState: @unchecked Sendable { }
+
+@MainActor
+@propertyWrapper
+public struct InjectedObserving<InjectedType: Observable>: DynamicProperty {
+
+  private let keyPath: KeyPath<InjectedValues, InjectedType>
+
+  @State
+  private var observed: InjectedType
+
+  public var wrappedValue: InjectedType {
+    observed
+  }
+
+  public init(_ keyPath: KeyPath<InjectedValues, InjectedType>) {
+    self.keyPath = keyPath
+    _observed = .init(wrappedValue: InjectedValues.get(keyPath))
+  }
+}
+
+extension InjectedObserving: @unchecked Sendable { }

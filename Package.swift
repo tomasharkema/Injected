@@ -22,24 +22,24 @@ let swiftUiPlugin: [Target.PluginUsage] = [
 ]
 
 let package = Package(
-  name: "Inject",
-  platforms: [.macOS(.v14), .iOS(.v14)],
+  name: "Injected",
+  platforms: [.macOS(.v14), .iOS(.v17)],
   products: [
     // Products define the executables and libraries a package produces, making them visible to
     // other packages.
     .library(
-      name: "Inject",
-      targets: ["Inject"]
+      name: "Injected",
+      targets: ["Injected"]
     ),
   ],
   targets: [
     // Targets are the basic building blocks of a package, defining a module or a test suite.
     // Targets can depend on other targets in this package and products from dependencies.
     .target(
-      name: "Inject"
+      name: "Injected"
     ),
 //        .testTarget(
-//            name: "InjectTests",
-//            dependencies: ["Inject"]),
+//            name: "InjectedTests",
+//            dependencies: ["Injected"]),
   ]
 )
